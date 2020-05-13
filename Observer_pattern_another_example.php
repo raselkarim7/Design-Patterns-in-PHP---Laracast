@@ -1,18 +1,18 @@
 <?php
 
 interface Observable{
-    public function attach(Observer $observer);
+    public function attach(ObserverTest $observer);
     public function notify($amount, $event);
 }
 
-interface Observer{
+interface ObserverTest{ // ObserverTest name has been set due to phpstorm confict with other interface Observer in ObserverPattern folder
     public function update (Observable $observable, $amount, $info);
 }
 
 
 class BankAccount implements Observable {
     private $observers = [];
-    public function attach(Observer $observer)
+    public function attach(ObserverTest $observer)
     {
         $this->observers[] = $observer;
     }
@@ -34,7 +34,7 @@ class BankAccount implements Observable {
 }
 
 
-class SmsNotifier implements Observer {
+class SmsNotifier implements ObserverTest {
     public function update(Observable $observable,  $amount, $info)
     {
 
